@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Embed = ({ block, contentState }) => {
+  if (!block.getEntityAt(0)) {
+    return null;
+  }
   const entity = contentState.getEntity(block.getEntityAt(0));
   const { src, height, width } = entity.getData();
   return (<iframe height={height} width={width} src={src} frameBorder="0" allowFullScreen title="Wysiwyg Embedded Content" />);

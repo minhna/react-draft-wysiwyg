@@ -30,6 +30,9 @@ const getImageComponent = config => class Image extends Component {
   setEntityAlignment: Function = (alignment): void => {
     const { block, contentState } = this.props;
     const entityKey = block.getEntityAt(0);
+    if (!entityKey) {
+      return;
+    }
     contentState.mergeEntityData(
       entityKey,
       { alignment },
@@ -81,6 +84,9 @@ const getImageComponent = config => class Image extends Component {
 
   render(): Object {
     const { block, contentState } = this.props;
+    if (!block.getEntityAt(0)) {
+      return null;
+    }
     const { hovered } = this.state;
     const { isReadOnly, isImageAlignmentEnabled } = config;
     const entity = contentState.getEntity(block.getEntityAt(0));
